@@ -2,6 +2,11 @@
     padding: 0;
     margin: 0;
 }
+
+header {
+  position: fixed;
+  width: 100%;
+}
 /* Add a black background color to the top navigation */
 .topnav {
   background-color: #333;
@@ -35,6 +40,16 @@
 .topnav .icon {
   display: none;
 }
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo span {
+  padding-left: 5px;
+}
 /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
 @media screen and (max-width: 600px) {
   .topnav a:not(:first-child) {display: none;}
@@ -59,7 +74,7 @@
   }
 }   
 
-.backgroundTest {
+.photodefond {
   background-image: url('../imageBateau/imageBateau.jpg');
   background-size: cover;
   background-position: center;
@@ -72,34 +87,259 @@
   align-items: center;
 }
 
-.Description {
-  background-color: #333;
-  width: 100%;
-  height: 250px;
-  color: white;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;;
-}
-
-.textContainer {
+.EcoRide {
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50%;
+  width: 100%;
+  height: 70px;
+  color: white;
+  border-radius: 60px;
+  font-family:'Courier New', Courier, monospace;
+  font-size: 20px;
+}
+   .presentation {  
+  background-color: rgb(90, 60, 60);
+  border: radius 10px;
+box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   height: 100px;
   color: white;
-  border-radius: 10px;
+   }
+
+   h2{
+  font-size: 35px;
+  color:#f5f9f7;
+  text-align: center;
+  font-weight:bold;
+  text-decoration: double;
+  margin: 20px 0;
+  font-family: 'Courier New', Courier, monospace;
+   }
+  
+  
+.foretampoule { 
+background-image: url('../imageBateau/foretampoule.png');
+ background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 600px;
+  background-repeat: no-repeat;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;}
+  
+  .ligne1{
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 500px;
+  border-radius: 40px;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  }
+  
+.covoiturage{
+  background-image: url('../imageBateau/laterre.png');
+  width: 100%;
+  height: 600px;
+  color:coral;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content:left;
+  text-align: center;
+ align-content: center;
+  font-weight: 500;
+  background-position: top;
+}  
+.covoiturage p {
+  font-size: 20px;
+  color: #fff;
+  margin: 20px;
+  font-family: 'Courier New', Courier, monospace;
 }
-    
-/*.body
-{
-     background-image: url('imageBateau.jpg');
-          background-repeat: no-repeat;
-          background-attachment: fixed;
-          background: cover;
-        }
-  */       
+
+.covoiturage form {
+  width: 450px;
+  background-color: #3e0808;
+  margin: 60px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 80px;
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 18px;
+  display: flex;  
+  flex-direction: column;
+ 
+  align-items: center;
+  justify-content: center;
+}
+.covoiturage form label {
+  display: block;
+  color: #fff;
+  margin-bottom: 10px;  
+
+}
+.covoiturage form input {
+  display: block;
+  margin: 10px auto;
+  width: 300px;
+  padding: 6px, 10px;
+  outline: none; 
+  border: none;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+.contact{
+  background-image: url('../imagebateau/basdepage.jpg');
+  width: 100%;
+  height: 600px;
+ display: flex;
+ flex-direction: column;
+  justify-content:center;
+
+  }
+
+  .contact .p{ 
+  color: #fff;
+  display: flex;
+  text-align: center;
+  font-family:'Times New Roman', Times, serif;
+  font-size: 30px;
+  margin: 30px;
+  font-weight: bold;
+  
+  }
+  .contact form {
+  width: 600px;
+  background-color: #3e0808;
+  display:block;
+  margin: 60px;
+  padding: 30px;
+  box-sizing: border-box;
+  border-radius: 100px;
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace; 
+  }
+  .contact label {
+  display: block;
+  color: #fff;  
+  margin-bottom: 10px;
+  }
+.contact input{
+  display: block;
+  margin: 10px auto;
+  width: 300px;
+  padding: 6px, 10px;
+  outline: none; 
+  border: none;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+  .footer{
+  background-color: rgba(113, 70, 70, 0.7);
+  display: flex; 
+  flex-direction: column ; 
+  justify-content:flex-end;
+  align-items:center;  
+  width: 100%;
+  height: 100px;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+  }
+  
+
+.inscription{
+  height:100vh;
+  background-image: url('../imageBateau/cabaneforet.jpg');
+  background-size:cover;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inscription form {
+  width:350px;
+  background-color:#f2f2f2;
+  margin: 20px;
+  padding:20px;
+  box-sizing: border-box ;
+  border-radius: 70px;
+  }
+.inscription label {
+  display: block;
+}
+.inscription  input {
+  display:block;
+  margin:10 auto;
+  width:300px;
+  padding:6px ,10px;
+  outline: none; 
+   border: none;
+   box-sizing:border-box;
+   border-radius:6px;
+}
+.inscription  button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.connexion{
+  height: 100vh;
+ background-image: url('../imageBateau/connexion.jpg');
+ background:cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  width: 100%;
+  height: 600px;
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+}
+.connexion label{
+  display: block;
+  color: #9d2d2d;
+  margin-bottom: 10px;
+  font-size: 30px;
+  font-weight: bold;
+ 
+}
+
+.connexion input{
+  display: block;
+  margin: 10px;
+  width: 300px;
+  padding: 6px;
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+  border-radius: 60px;
+
+}
+.connexion button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
