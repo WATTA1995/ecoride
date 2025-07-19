@@ -1,4 +1,30 @@
-<?php include('header.php'); ?>
+<?php include('header.php'); 
+
+$sub = $_POST['sub'];
+
+if(isset($sub)) {
+    
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $mail = $_POST['email'];
+    $confirmation_mail = $_POST['confirmation_email'];
+    $tel = $_POST['telephone'];
+    $date = $_POST['date_naissance'];
+    $adresse = $_POST['adresse'];
+    $cp = $_POST['code_postal'];
+    $ville = $_POST['ville'];
+    $pays = $_POST['pays'];
+    $mdp = $_POST['pass'];
+    $confirmation_pass = $_POST['confirmation_motdepasse'];
+
+    $sql = "INSERT INTO user (id, nom, prenom, mail, num, birthday, adresse, cp, ville, pays, mdp) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+    $stmt= $bdd->prepare($sql);
+    $stmt->execute([$id=NULL,$nom, $prenom, $mail, $tel, $date, $adresse, $cp, $ville, $pays, $mdp]);
+} else {
+    echo "test2";
+}
+
+?>
 <section>
     <div class="inscription">
       
@@ -31,11 +57,12 @@
             <input type="text" id="pays" name="pays" required>
 
             <label for="motdepasse">Mot de passe:</label>
-            <input type="password" id="motdepasse" name="motdepasse" required>
+            <input type="password" id="motdepasse" name="pass" required>
             <label for="confirmation_motdepasse">Confirmer le mot de passe:</label>
             <input type="password" id="confirmation_motdepasse" name="confirmation_motdepasse" required>
 
-            <button type="submit">S'inscrire</button>
+            <button type="btn" name="sub">S'inscrire</button>
+            
             <p>En vous inscrivant, vous acceptez nos <a href="mentionslegale.php">mentions légales</a>.</p>
             <p>Déjà inscrit ? <a href="connexion.php">Connectez-vous ici</a>.</p>
         </form>
