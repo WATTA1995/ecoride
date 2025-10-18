@@ -3,5 +3,4 @@
 <section>
     <div class="mentionslegale">
         
-    
 <?php include('footer.php'); ?>

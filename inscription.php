@@ -1,9 +1,17 @@
-<?php include('header.php'); 
+<?php
 
-$sub = $_POST['sub'];
 
-if(isset($sub)) {
-    
+include('header.php');
+
+// $sub = $_POST['sub'];
+
+// if (isset($sub)) {
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+   
+
+    require_once 'bdd.php';
+    $role = $_POST['role']?? 'conducteur';
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $mail = $_POST['email'];
@@ -17,18 +25,49 @@ if(isset($sub)) {
     $mdp = $_POST['pass'];
     $confirmation_pass = $_POST['confirmation_motdepasse'];
 
-    $sql = "INSERT INTO user (id, nom, prenom, mail, num, birthday, adresse, cp, ville, pays, mdp) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-    $stmt= $bdd->prepare($sql);
-    $stmt->execute([$id=NULL,$nom, $prenom, $mail, $tel, $date, $adresse, $cp, $ville, $pays, $mdp]);
+
+    $sql = "SELECT * FROM user WHERE mail = ? OR num = ?";
+    $stmt = $bdd->prepare($sql);
+    $stmt->execute([$mail, $tel]);
+    $user = $stmt->fetch();
+
+    $erreure = [];
+
+    if ($user) {
+        if ($user['mail'] === $mail) {
+            $erreur = "L'adresse email est déjà utilisée.";
+        } elseif ($user['num'] === $tel) {
+           $erreur = "Le numéro de téléphone est déjà utilisé.";
+        }
+        // exit;
+    }
+    $hasgedPassword = password_hash($mdp, PASSWORD_DEFAULT);
+    $mdp = $hasgedPassword;
+    // Préparer et exécuter la requête d'insertion
+
+
+
+    $sql = "INSERT INTO user (id, role, nom, prenom, mail, num, birthday, adresse, cp, ville, pays, mdp) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+    $stmt = $bdd->prepare($sql);
+    $stmt->execute([$id = null, $role,$nom, $prenom, $mail, $tel, $date, $adresse, $cp, $ville, $pays, $mdp]);
 } else {
-    echo "test2";
+   
 }
 
 ?>
+
 <section>
     <div class="inscription">
-      
+
+
         <form method="POST">
+            
+        <label for="role"> je suis :</label>
+            <select name="role" id="role">
+                <option value="conducteur">Conducteur</option>
+                <option value="passager">Passager</option>
+            </select>
+            
             <label for="nom">Nom:</label>
             <input type="text" id="nom" name="nom" required>
 
@@ -36,7 +75,8 @@ if(isset($sub)) {
             <input type="text" id="prenom" name="prenom" required>
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+           <input type="email" id="email" name="email" required>
+
             <label for="confiramation_email">Confirmer l'email:</label>
             <input type="email" id="confirmation_email" name="confirmation_email" required>
             <label for="telephone">Téléphone:</label>
@@ -61,10 +101,12 @@ if(isset($sub)) {
             <label for="confirmation_motdepasse">Confirmer le mot de passe:</label>
             <input type="password" id="confirmation_motdepasse" name="confirmation_motdepasse" required>
 
-            <button type="btn" name="sub">S'inscrire</button>
-            
+            <button type="submit" name="sub">S'inscrire</button>
+
             <p>En vous inscrivant, vous acceptez nos <a href="mentionslegale.php">mentions légales</a>.</p>
             <p>Déjà inscrit ? <a href="connexion.php">Connectez-vous ici</a>.</p>
         </form>
     </div>
-    <?php include("footer.php"); ?>
+
+             <?php include("footer.php"); ?>            
+     

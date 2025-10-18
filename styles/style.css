@@ -4,8 +4,14 @@
 }
 
 header {
-  position: fixed;
+  position:static;
   width: 100%;
+  top: 0;
+  left: 0;
+  z-index:1000;
+height: 40px;
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);;
+
 }
 /* Add a black background color to the top navigation */
 .topnav {
@@ -107,7 +113,7 @@ box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; 
   width: 100%;
   height: 100px;
   color: white;
@@ -153,8 +159,8 @@ background-image: url('../imageBateau/foretampoule.png');
 .covoiturage{
   background-image: url('../imageBateau/laterre.png');
   width: 100%;
-  height: 600px;
-  color:coral;
+  height: 850px;
+  color:rgba(226, 219, 217, 0.763);
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -164,15 +170,9 @@ background-image: url('../imageBateau/foretampoule.png');
   font-weight: 500;
   background-position: top;
 }  
-.covoiturage p {
-  font-size: 20px;
-  color: #fff;
-  margin: 20px;
-  font-family: 'Courier New', Courier, monospace;
-}
 
-.covoiturage form {
-  width: 450px;
+.covoiturage form { 
+  width: 400px;
   background-color: #3e0808;
   margin: 60px;
   padding: 20px;
@@ -180,13 +180,14 @@ background-image: url('../imageBateau/foretampoule.png');
   border-radius: 80px;
   color: #fff;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 18px;
+  font-size: 20px;
   display: flex;  
-  flex-direction: column;
- 
+   flex-direction: column;
   align-items: center;
   justify-content: center;
+ 
 }
+
 .covoiturage form label {
   display: block;
   color: #fff;
@@ -203,22 +204,46 @@ background-image: url('../imageBateau/foretampoule.png');
   box-sizing: border-box;
   border-radius: 6px;
 }
+.covoiturage h2 {
+  text-align: center;
+  text-wrap: nowrap;
+  font-size: 40px;
+  color: #fff;
+  margin-bottom: 20px;
+  font-family: 'Courier New', Courier, monospace;
+}
+/*.bulle-connexion {
+    background-color: #e0f7fa;
+    padding: 35px;
+    border-radius: 10px;
+    font-size: 16px;
+    margin: 20px auto;
+    width: fit-content;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.bulle-connexion a {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #00796b;
+    font-weight: bold;
+}*/
+
+
 .contact{
   background-image: url('../imagebateau/basdepage.jpg');
   width: 100%;
-  height: 600px;
+  height: 850px;
  display: flex;
- flex-direction: column;
-  justify-content:center;
+ flex-direction:column;
+  justify-content:flex-start;
 
   }
 
-  .contact .p{ 
-  color: #fff;
-  display: flex;
+  .contact p{ 
+  color: #1d1c1c;
   text-align: center;
   font-family:'Times New Roman', Times, serif;
-  font-size: 30px;
+  font-size: 60px;
   margin: 30px;
   font-weight: bold;
   
@@ -226,11 +251,11 @@ background-image: url('../imageBateau/foretampoule.png');
   .contact form {
   width: 600px;
   background-color: #3e0808;
-  display:block;
+  display:inline-block;
   margin: 60px;
   padding: 30px;
   box-sizing: border-box;
-  border-radius: 100px;
+  border-radius: 10px;
   color: #fff;
   font-family: 'Courier New', Courier, monospace; 
   }
@@ -240,7 +265,7 @@ background-image: url('../imageBateau/foretampoule.png');
   margin-bottom: 10px;
   }
 .contact input{
-  display: block;
+  display: row;
   margin: 10px auto;
   width: 300px;
   padding: 6px, 10px;
@@ -301,6 +326,9 @@ background-image: url('../imageBateau/foretampoule.png');
   border-radius: 5px;
   cursor: pointer;
 }
+
+
+
 .connexion{
   height: 100vh;
  background-image: url('../imageBateau/connexion.jpg');
@@ -317,7 +345,7 @@ background-image: url('../imageBateau/foretampoule.png');
 }
 .connexion label{
   display: block;
-  color: #9d2d2d;
+  color: #ede1ec;
   margin-bottom: 10px;
   font-size: 30px;
   font-weight: bold;
@@ -343,3 +371,152 @@ background-image: url('../imageBateau/foretampoule.png');
   border-radius: 5px;
   cursor: pointer;
 }
+
+.ajout-trajet h2  {
+  text-align: center;
+  font-size: 40px;
+  color:#895129;
+  margin-bottom: 20px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.form-trajet {
+  width: 450px;
+  height: 500px;
+  background-color: #3e0808;
+  margin: 90px;
+  padding: 60px;
+  box-sizing: border-box;
+  border-radius:100px;
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 15px;
+  display: flex;  
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+ .ajout-trajet label {
+  display: block;
+  color: #f0e9e9;
+  margin-bottom: 20px;}
+   
+  .ajout-trajet{
+  background-image: url('../imageBateau/trajet.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 650px;
+  }
+  a {
+    color: #e39595df; /* Couleur personnalisée */
+    text-decoration: none; /* Supprime le soulignement par défaut */
+    font-weight: bold; /* Met le texte en gras */
+    filter: brightness(1.75);
+}
+
+a:hover {
+    color: #007BFF; /* Couleur au survol */
+    text-decoration:underline ; /* Ajoute un soulignement au survol */
+}
+
+a:visited {
+    color: #11b822e4; /* Couleur pour les liens visités */
+}
+
+.reservation {
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:20px;
+}
+.trajet-details{
+  margin-bottom: 30px;
+  padding: 20px;
+  background:rgba(52,152,20,0.8);
+  border-radius: 10px;
+  border-left: #1d1c1c solid 10px;
+}
+.trajet-details h2{
+  color:#4a2307;
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: bold ;
+}
+.trajet-info{
+  text-align: left;
+}
+
+.trajet-route {
+  font-size: 18px;
+  margin-bottom: 15px;  
+  font-weight: bold;
+  color: #fff;
+  text-align:center;
+
+}
+.trajet-item{
+  margin:10px ;
+  font-size: 16px;
+  color: #e9ecf1;
+  padding: 8px 0;
+  border-bottom: 1px solid #0b0b0b;
+}
+
+.reservation-form{
+   text-align: left;
+   }
+   .form-group{
+    margin-bottom: 20px;
+   }
+    .form-group label{
+    display: block;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size:16px;
+    }
+    .btn-submit {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+.welcome-bubble {
+position: fixed;
+top: 20px;
+  right: 20px;
+background-color: white;
+ border: 2px solid #4CAF50;
+border-radius: 15px;
+padding: 20px;
+ max-width: 300px;
+z-index: 1000; }
+
+.close-btn {
+  float: right;
+  font-size: 18px;
+  cursor: pointer;
+  color: #888;
+  background: none;
+}
+.close-btn:hover {
+  color: #333;
+}
+ .hidden{
+  display: none;
+ }
+
+
+ 
