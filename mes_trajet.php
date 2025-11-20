@@ -4,14 +4,14 @@ require_once 'bdd.php';
 include('header.php');
 
 if (!isset($_SESSION['user_id'])) {
-    echo "<p style='color:red;'>Vous devez être connecté pour voir vos trajets.</p>";
+    echo '<p class="error-message">Vous devez être connecté pour voir vos trajets.</p>';
     include('footer.php');
     exit;
 }
 
 $user_id = $_SESSION['user_id'];
 
-// --- Traitement acceptation/refus ---
+// Traitement acceptation/refus
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reservation_id'], $_POST['trajet_id'], $_POST['action'])) {
     $reservation_id = $_POST['reservation_id'];
     $trajet_id = $_POST['trajet_id'];
@@ -27,14 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reservation_id'], $_P
         $stmt->execute([$reservation_id]);
         $nb_places_reservees = $stmt->fetchColumn();
 
-        $stmt = $bdd->prepare("UPDATE covoiturage SET places_disponibles = places_disponibles - ? WHERE id = ?");
+        $stmt = $bdd->prepare("UPDATE covoiturage SET places = places - ? WHERE id = ?");
         $stmt->execute([$nb_places_reservees, $trajet_id]);
     }
 
     $message = "La réservation a été " . ($action === 'accepter' ? "acceptée" : "refusée") . " !";
 }
 
-// --- Récupérer les trajets du conducteur ---
+// Récupérer les trajets
 $stmt = $bdd->prepare("SELECT * FROM covoiturage WHERE user_id = ? ORDER BY date_depart DESC");
 $stmt->execute([$user_id]);
 $trajets = $stmt->fetchAll();
@@ -44,21 +44,19 @@ $trajets = $stmt->fetchAll();
     <h2>Mes trajets</h2>
 
     <?php if (isset($message)): ?>
-        <section class="message-reservation">
-            <p class="success"><?= htmlspecialchars($message) ?></p>
-        </section>
+        <div class="message-success"><?= htmlspecialchars($message) ?></div>
     <?php endif; ?>
 
     <?php if (!$trajets): ?>
-        <section class="message-reservation">
-            <p class="info">Vous n’avez encore créé aucun trajet.</p>
-        </section>
+        <p class="info">Vous n’avez encore créé aucun trajet.</p>
     <?php else: ?>
         <?php foreach ($trajets as $trajet): ?>
+
+
             <div class="trajet-card">
                 <h3><?= htmlspecialchars($trajet['ville_depart']) ?> → <?= htmlspecialchars($trajet['ville_arrivee']) ?></h3>
                 <p><strong>Date :</strong> <?= date('d/m/Y à H:i', strtotime($trajet['date_depart'])) ?></p>
-                <p><strong>Places disponibles :</strong> <?= htmlspecialchars($trajet['places_disponibles']) ?></p>
+                <p><strong>Places disponibles :</strong> <?= htmlspecialchars($trajet['places']) ?></p>
 
                 <?php
                 $stmt = $bdd->prepare("SELECT * FROM reservation WHERE covoiturage_id = ? ORDER BY statut, id DESC");
@@ -67,7 +65,7 @@ $trajets = $stmt->fetchAll();
                 ?>
 
                 <?php if ($reservations): ?>
-                    <section class="reservations-liste">
+                    <div class="reservations-liste">
                         <h4>Réservations :</h4>
                         <?php foreach ($reservations as $resa): ?>
                             <div class="reservation-item <?= $resa['statut'] ?>">
@@ -92,15 +90,15 @@ $trajets = $stmt->fetchAll();
                                 <?php endif; ?>
                             </div>
                         <?php endforeach; ?>
-                    </section>
+                    </div>
                 <?php else: ?>
                     <p class="info">Aucune réservation pour ce trajet.</p>
                 <?php endif; ?>
             </div>
         <?php endforeach; ?>
     <?php endif; ?>
-
-    <a href="index.php" class="btn-retour">← Retour à l'accueil</a>
 </section>
 
 <?php include('footer.php'); ?>
+
+

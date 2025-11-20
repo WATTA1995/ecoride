@@ -29,18 +29,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Vérifier qu'il y a assez de places disponibles
-    $stmt = $bdd->prepare("SELECT places_disponibles FROM covoiturage WHERE id = ?");
+    $stmt = $bdd->prepare("SELECT places FROM covoiturage WHERE id = ?");
     $stmt->execute([$covoiturage_id]);
     $trajet = $stmt->fetch();
     
-    if ($trajet['places_disponibles'] < $nb_places) {
+    if ($trajet['places'] < $nb_places) {
         echo "<p style='color:red;'> Pas assez de places disponibles.</p>";
         exit;
     }
 
     // Insérer la réservation
     try {
-        $stmt = $bdd->prepare("INSERT INTO reservation (covoiturage_id, utilisateur_id, nom, email, nb_places, date_reservation, statut) 
+        $stmt = $bdd->prepare("INSERT INTO reservation (covoiturage_id, user_id, nom, email, nb_places, date_reservation, statut) 
                                VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([
             $covoiturage_id,
@@ -51,20 +51,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $date_reservation,
             $statut
         ]);
-
-       echo "<section style='text-align:center; padding:50px;'>";
-       echo "<p style='color:green; font-size:20px; font-weight:bold;'> Demande de réservation envoyée !</p>";
-        echo "<p style='color:#666;'>Le conducteur doit valider votre demande.</p>";
-        echo "<p style='color:#666;'>Vous serez notifié une fois la réservation validée.</p>";
-        echo "<br><a href='covoiturage.php' style='background:#4CAF50; color:white; padding:15px 30px; text-decoration:none; border-radius:5px;'>Retour aux trajets</a>";
-        echo "</section>";
+   
         
     } catch (PDOException $e) {
         echo "<p style='color:red;'> Erreur lors de la réservation : " . htmlspecialchars($e->getMessage()) . "</p>";
     }
-} else {
+ } else {
     echo "<p style='color:red;'> Méthode non autorisée.</p>";
-}
+ }
+  ?>
 
-include('footer.php');
-?>
+
+ <section class="message-reservation">
+            <p class="success">Demande de réservation envoyée !</p>
+            <p class="info">Le conducteur doit valider votre demande.</p>
+            <p class="info">Vous serez notifié une fois la réservation validée.</p>
+            <a href="covoiturage.php" class="btn-retour">Retour aux trajets</a>
+        </section>
+
+<?php include('footer.php'); ?>

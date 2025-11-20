@@ -1,11 +1,13 @@
 <?php
 
 try {
-    $bdd = new PDO('mysql:host=localhost;dbname=ecoride', 'root', '');
-    //echo "vous etes connecté";
+    $bdd = new PDO
+    ('mysql:host=mysql-ecorideromain.alwaysdata.net;
+    dbname=ecorideromain_ecoride','441565','Azertyuiop23021995');
+
+     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    // tenter de réessayer la connexion après un certain délai, par exemple
-    //echo "erreur => " . $e->getMessage();
+    die('Erreur de connexion : ' . $e->getMessage());
 }
 
 ?> 

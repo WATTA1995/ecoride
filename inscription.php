@@ -3,10 +3,6 @@
 
 include('header.php');
 
-// $sub = $_POST['sub'];
-
-// if (isset($sub)) {
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    
 
@@ -39,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif ($user['num'] === $tel) {
            $erreur = "Le numéro de téléphone est déjà utilisé.";
         }
-        // exit;
     }
     $hasgedPassword = password_hash($mdp, PASSWORD_DEFAULT);
     $mdp = $hasgedPassword;

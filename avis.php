@@ -44,15 +44,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $commentaire = $_POST['commentaire'] ?? '';
     
     if ($note) {
-        $sql = "INSERT INTO avis (trajet_id, passager_id, conducteur_id, note, commentaire) 
-                VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO avis (trajet_id, passager_id, conducteur_id, note, commentaire , date_creation) 
+                VALUES (?, ?, ?, ?, ? , ?)";
         $stmt = $bdd->prepare($sql);
         $stmt->execute([
-            $trajet_id,
+             $trajet_id,
             $_SESSION['user_id'],
             $trajet['user_id'],
             $note,
-            $commentaire
+            $commentaire,
+            $date_creation,
         ]);
         
         $message_succes = "Merci pour votre avis !";
@@ -62,16 +63,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<?php include('header.php'); ?>
+            <!-- <div class="message-succes"> -->
+                <!-- <?= $message_succes ?> -->
+             <!-- <br><br> -->
+            <!-- </div> -->
 
 
-            <div class="message-succes">
-                <?= $message_succes ?>
-                <br><br>
-                <a href="covoiturage.php">Retour aux trajets</a>
-            </div>
-
-        <div class="trajet-info">
+        <div class="trajet-avis">
             <h3><?= htmlspecialchars($trajet['ville_depart']) ?> → <?= htmlspecialchars($trajet['ville_arrivee']) ?></h3>
             <p><strong>Conducteur :</strong> <?= htmlspecialchars($trajet['prenom']) ?> <?= htmlspecialchars($trajet['nom']) ?></p>
             <p><strong>Date :</strong> <?= date('d/m/Y', strtotime($trajet['date_depart'])) ?></p>
@@ -93,17 +91,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <input type="hidden" name="note" id="noteInput" value="">
 
-            <label for="commentaire"><strong>Votre commentaire (optionnel) :</strong></label>
+            <label for="commentaire"><strong>Votre commentaire :</strong></label>
             <textarea name="commentaire" id="commentaire" placeholder="Partagez votre expérience..."></textarea>
 
             <button type="submit">Envoyer mon avis</button>
         </form>
-
+          <a href="covoiturage.php">Retour aux trajets</a>
    
-    </div>
+     
 
-    <script src="avis.js"></script>
-</body>
-</html>
+    <script src="scripts/scripts.js"></script>
 
-<? include('footer.php'); ?>
+<? include('footer.php'); ?> 

@@ -35,6 +35,8 @@ require_once 'bdd.php'; // fichier avec la connexion PDO
 
 
 <section>
+ 
+
     <form class="connexion" method="post" action="connexion.php">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" required placeholder="Entrez votre email">
